@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Users, Joins }) {
       // define association here
-      Users.hasMany(Joins);
+      Users.hasMany(Joins, { foreignKey: "user_id" });
     }
   }
   Users.init(
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       nama_lengkap: DataTypes.STRING,
       tempat_lahir: DataTypes.STRING,
       tanggal_lahir: DataTypes.DATE,
-      foto: DataTypes.BLOB,
+      foto: DataTypes.TEXT,
       tempat_tinggal: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
@@ -34,8 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       pendidikan_terakhir: DataTypes.STRING,
       institusi: DataTypes.STRING,
       pekerjaan: DataTypes.STRING,
-      social_media: DataTypes.STRING,
-      status: DataTypes.STRING,
+      status: {
+        type: DataTypes.ENUM("Admin", "User"),
+        defaultValue: "User",
+      },
     },
     {
       sequelize,

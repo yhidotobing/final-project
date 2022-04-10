@@ -9,18 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Classes, Sessions, Joins }) {
       // define association here
-      Classes.hasMany(Sessions);
+      Classes.hasMany(Sessions, { foreignKey: "class_id" });
       Classes.hasMany(Joins);
     }
   }
   Classes.init(
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      kode_kelas: {
+        type: DataTypes.STRING(6),
+        autoIncrement: false,
+        validate: {
+          len: [6, 6],
+        },
+        unique: true,
+      },
       nama_kelas: DataTypes.STRING,
       tanggal_mulai: DataTypes.DATEONLY,
       tanggal_selesai: DataTypes.DATEONLY,
       deskripsi_kelas: DataTypes.STRING,
-      foto_kelas: DataTypes.BLOB,
+      foto_kelas: DataTypes.STRING,
     },
     {
       sequelize,

@@ -5,7 +5,7 @@ const service = async (req, res) => {
     const { id } = req.params;
     const payload = req.body;
     const kelas = await Classes.update(payload, {
-      where: { id },
+      where: { id: req.body.id },
     });
     return res.json({
       message: "Class updated successfully",
