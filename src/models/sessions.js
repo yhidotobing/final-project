@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       kode_sesi: {
         type: DataTypes.STRING(6),
-        autoIncrement: false,
         validate: {
           len: [6, 6],
         },
