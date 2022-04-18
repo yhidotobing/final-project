@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       waktu_mulai: { type: DataTypes.TIME, allowNull: false },
       waktu_selesai: { type: DataTypes.TIME, allowNull: false },
       urutan_sesi: DataTypes.TINYINT,
-      class_id: { type: DataTypes.INTEGER, allowNull: false },
+      class_id: { type: DataTypes.INTEGER },
     },
     {
       sequelize,

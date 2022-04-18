@@ -1,4 +1,5 @@
 const { Sessions } = require("../../models");
+const { body } = require("express-validator");
 
 const service = async (req, res) => {
   try {
@@ -19,7 +20,11 @@ const service = async (req, res) => {
   }
 };
 
-module.exports = { service };
+const validationClass_id = [
+  body("class_id").notEmpty().withMessage("class_id harus di isi"),
+];
+
+module.exports = { service, validationClass_id };
 
 const generateCode = async () => {
   const kode_sesi = Math.floor(Math.random() * 1000000);

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       materi: { type: DataTypes.STRING, allowNull: false },
       file: DataTypes.TEXT,
       jenis_materi: DataTypes.ENUM("recording", "materi"),
-      session_id: { type: DataTypes.INTEGER, allowNull: false },
+      session_id: { type: DataTypes.INTEGER },
     },
     {
       sequelize,

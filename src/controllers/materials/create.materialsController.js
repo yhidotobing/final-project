@@ -1,3 +1,4 @@
+const { body } = require("express-validator");
 const { Materials } = require("../../models");
 
 const service = async (req, res) => {
@@ -15,4 +16,8 @@ const service = async (req, res) => {
   }
 };
 
-module.exports = { service };
+const validationSession_id = [
+  body("session_id").notEmpty().withMessage("session_id harus di isi"),
+];
+
+module.exports = { service, validationSession_id };
