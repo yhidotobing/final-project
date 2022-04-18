@@ -9,15 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Materials, Sessions }) {
       // define association here
-      Materials.belongsTo(Sessions);
+      Materials.belongsTo(Sessions, { foreignKey: "session_id" });
     }
   }
   Materials.init(
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-      materi: DataTypes.STRING,
+      materi: { type: DataTypes.STRING, allowNull: false },
       file: DataTypes.TEXT,
       jenis_materi: DataTypes.ENUM("recording", "materi"),
+      session_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

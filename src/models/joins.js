@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Users, Joins, Classes }) {
       // define association here
       Joins.belongsTo(Users, { foreignKey: "user_id" });
-      Joins.belongsTo(Classes);
+      Joins.belongsTo(Classes, { foreignKey: "class_id" });
     }
   }
   Joins.init(
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       user_id: DataTypes.INTEGER,
-      class_id: DataTypes.STRING,
+      class_id: DataTypes.INTEGER,
       role: DataTypes.ENUM("student", "tutor", "facilitator"),
     },
     {

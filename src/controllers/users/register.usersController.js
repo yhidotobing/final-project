@@ -1,18 +1,16 @@
 const { Users } = require("../../models");
-
 const service = async (req, res) => {
   try {
     const payload = req.body;
-    const user = await Users.create(payload);
+    const requestDB = await Users.create(payload);
     return res.json({
-      message: "User created successfully",
-      data: user,
+      msg: "User berhasil diregister",
+      data: requestDB,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Email sudah terdaftar",
+      msg: "User gagal diregister",
     });
   }
 };
-
 module.exports = { service };

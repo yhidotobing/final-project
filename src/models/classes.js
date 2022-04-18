@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Classes, Sessions, Joins }) {
       // define association here
       Classes.hasMany(Sessions, { foreignKey: "class_id" });
-      Classes.hasMany(Joins);
+      Classes.hasMany(Joins, { foreignKey: "class_id" });
     }
   }
   Classes.init(
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         unique: true,
       },
-      nama_kelas: DataTypes.STRING,
+      nama_kelas: { type: DataTypes.STRING, unique: true, allowNull: false },
       tanggal_mulai: DataTypes.DATEONLY,
       tanggal_selesai: DataTypes.DATEONLY,
       deskripsi_kelas: DataTypes.STRING,

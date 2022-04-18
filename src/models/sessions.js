@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Sessions, Classes, Materials }) {
       // define association here
       Sessions.belongsTo(Classes, { foreignKey: "class_id" });
-      Sessions.hasMany(Materials);
+      Sessions.hasMany(Materials, { foreignKey: "session_id" });
     }
   }
   Sessions.init(
@@ -24,10 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         unique: true,
       },
-      nama_sesi: DataTypes.STRING,
-      waktu_mulai: DataTypes.TIME,
-      waktu_selesai: DataTypes.TIME,
+      nama_sesi: { type: DataTypes.STRING, allowNull: false },
+      waktu_mulai: { type: DataTypes.TIME, allowNull: false },
+      waktu_selesai: { type: DataTypes.TIME, allowNull: false },
       urutan_sesi: DataTypes.TINYINT,
+      class_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

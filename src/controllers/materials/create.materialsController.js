@@ -1,16 +1,16 @@
-const { Users } = require("../../models");
+const { Materials } = require("../../models");
 
 const service = async (req, res) => {
   try {
     const payload = req.body;
-    const user = await Users.create(payload);
+    const materials = await Materials.create(payload);
     return res.json({
-      message: "User created successfully",
-      data: user,
+      message: "Material created successfully",
+      data: materials,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Email sudah terdaftar",
+      message: error.toString(),
     });
   }
 };
