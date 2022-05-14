@@ -1,5 +1,7 @@
 const { Users } = require("../../models");
 const { compareSync } = require("bcrypt");
+const { createJWT } = require("../../middlewares/jwt");
+const { token } = require("morgan");
 const service = async (req, res) => {
   try {
     // find by email
@@ -18,10 +20,12 @@ const service = async (req, res) => {
         message: "password salah",
       });
     }
+    // create token
+    const token = createJWT(user);
     // success
     return res.status(200).json({
       message: "login berhasil",
-      user,
+      data: token,
     });
   } catch (error) {
     return res.status(500).json({
